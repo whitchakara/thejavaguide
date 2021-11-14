@@ -1,18 +1,7 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
 
 # Create your models here.
-
-class Review(models.Model):
-    ambience = models.IntegerField()
-    cleanliness = models.IntegerField()
-    coffee = models.IntegerField()
-    music = models.IntegerField()
-    location = models.IntegerField()
-    additonal_comments = models.TextField()
-    created_at = models.DateTimeField(auto_now_add="True")
-    updated_at = models.DateTimeField(auto_now="True")
-
-
 class JavaShop(models.Model):
     name= models.CharField(max_length=50)
     street_address = models.CharField(max_length=100)
@@ -21,7 +10,8 @@ class JavaShop(models.Model):
     zip_code = models.IntegerField()
     hours_of_operation= models.IntegerField()
     phone_number = models.IntegerField()
-    reviews = models.ManyToManyField(Review, related_name="reviews")
+    # 
+    # reviews = models.ForeignKey(Review, related_name="reviews", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add="True")
     updated_at = models.DateTimeField(auto_now="True")
 
@@ -32,9 +22,22 @@ class User(models.Model):
     email=models.CharField(max_length=50)
     zip_code=models.IntegerField()
     password=models.CharField(max_length=50)
-    java_shops = models.ManyToManyField(JavaShop, related_name="shops")
+    # java_shops = models.ManyToManyField(JavaShop, related_name="shops")
+    # review = models.ForeignKey(Review, related_name="reviews", on_delete = models.CASCADE)
     created_at=models.DateTimeField(auto_now_add="True")
     updated_at=models.DateTimeField(auto_now="True")
+
+class Review(models.Model):
+    ambience = models.IntegerField()
+    cleanliness = models.IntegerField()
+    coffee = models.IntegerField()
+    music = models.IntegerField()
+    location = models.IntegerField()
+    additonal_comments = models.TextField()
+    user = models.ForeignKey(User, related_name="reviews", on_delete=models.CASCADE ,blank= True, null=True)
+    shop = models.ForeignKey(JavaShop, related_name="shops", on_delete=CASCADE, blank= True, null=True)
+    created_at = models.DateTimeField(auto_now_add="True")
+    updated_at = models.DateTimeField(auto_now="True")
 
 
 
