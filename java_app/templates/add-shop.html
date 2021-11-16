@@ -7,8 +7,13 @@
     <title>Add Shop</title>
 </head>
 <body>
-    <form action = "/dashboard" method="post">
+    <form action = "/shops/add" method="post">
         {% csrf_token %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
         <label for= "name">Name</label>
         <input type="text" name="name"/>
         <label for= "street_address">Street Address</label>
