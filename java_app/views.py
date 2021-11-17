@@ -132,5 +132,5 @@ def user_display(request, user_id): #GET request
         'all_reviews': this_user.reviews.all(),
         'this_user': this_user
     }
-    return render (request, 'userdisplay.html', context)
+    return render (request, 'userprofile.html', context)
     
