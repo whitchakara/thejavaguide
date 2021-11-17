@@ -9,19 +9,19 @@ class JavaManager(models.Manager):
     def shop_validator(self,postData):
         errors = {}
         if len(postData["name"]) < 3:
-            errors["name"] = "  name must be at least 3 characters"
+            errors["name"] = "Name must be at least 3 characters"
         if len(postData['street_address']) <6:
-            errors['street_address'] = " address must be at least 6 characters"
+            errors['street_address'] = "Address must be at least 6 characters"
         if len(postData['city']) <3:
-            errors['city'] = " city must be at least 3 characters"
+            errors['city'] = "City must be at least 3 characters"
         if len(postData['state']) <2:
-            errors['city'] = " state must be at least 2 characters"
+            errors['state'] = "State must be at least 2 characters"
         if len(postData['zip_code']) <5:
-            errors['city'] = " Zip Code must be at least 5 characters"
+            errors['zip_code'] = "Zip Code must be at least 5 characters"
         if len(postData['hours_of_operation']) <0:
-            errors['city'] = " hours of operation must be included"
+            errors['hours_of_operation'] = "Hours of operation must be included"
         if len(postData['phone_number']) <10:
-            errors['city'] = " phone number must be at least 10 characters"
+            errors['phone_number'] = "Phone number must be at least 10 characters"
         return errors 
 class JavaShop(models.Model):
     name= models.CharField(max_length=50)
@@ -29,13 +29,13 @@ class JavaShop(models.Model):
     city = models.CharField(max_length=20)
     state= models.CharField(max_length=2)
     zip_code = models.IntegerField()
-    hours_of_operation= models.IntegerField()
+    hours_of_operation= models.IntegerField() #charfield
     phone_number = models.IntegerField()
     # 
     # reviews = models.ForeignKey(Review, related_name="reviews", on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add="True")
     updated_at = models.DateTimeField(auto_now="True")
-    JavaManager()
+    objects = JavaManager()
 
 class UserManager(models.Manager):
     def validate(self, form):
@@ -82,7 +82,7 @@ class User(models.Model):
     # review = models.ForeignKey(Review, related_name="reviews", on_delete = models.CASCADE)
     created_at=models.DateTimeField(auto_now_add="True")
     updated_at=models.DateTimeField(auto_now="True")
-    UserManager()
+    objects=UserManager()
 
 class Review(models.Model):
     ambience = models.IntegerField()
@@ -92,7 +92,7 @@ class Review(models.Model):
     location = models.IntegerField()
     additonal_comments = models.TextField()
     user = models.ForeignKey(User, related_name="reviews", on_delete=models.CASCADE ,blank= True, null=True)
-    shop = models.ForeignKey(JavaShop, related_name="shops", on_delete=CASCADE, blank= True, null=True)
+    shop = models.ForeignKey(JavaShop, related_name="shops", on_delete=models.CASCADE, blank= True, null=True)
     created_at = models.DateTimeField(auto_now_add="True")
     updated_at = models.DateTimeField(auto_now="True")
 
