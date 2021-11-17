@@ -123,4 +123,14 @@ def updateReview(request, review_id):
 
         this_review.save()
     return redirect('/dashboard')
+
+def user_display(request, user_id): #GET request
+    if request.method == "POST" or "logged_user" not in request.session:
+        return redirect ('/')
+    this_user= User.objects.get(id=user_id)
+    context={
+        'all_reviews': this_user.reviews.all(),
+        'this_user': this_user
+    }
+    return render (request, 'userdisplay.html', context)
     
