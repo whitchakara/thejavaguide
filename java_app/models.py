@@ -29,7 +29,7 @@ class JavaShop(models.Model):
     city = models.CharField(max_length=20)
     state= models.CharField(max_length=2)
     zip_code = models.IntegerField()
-    hours_of_operation= models.IntegerField() #charfield
+    hours_of_operation= models.CharField(max_length=100)
     phone_number = models.IntegerField()
     # 
     # reviews = models.ForeignKey(Review, related_name="reviews", on_delete = models.CASCADE)
@@ -38,22 +38,18 @@ class JavaShop(models.Model):
     objects = JavaManager()
 
 class UserManager(models.Manager):
-    def validate(self, form):
+    def validate(self, postData):
         errors = {}
-        if len(form['first_name']) < 2:
+        if len(postData['first_name']) < 2:
             errors['first_name'] = 'First Name must be at least 2 characters'
-        if len(form['last_name']) < 2:
+        if len(postData['last_name']) < 2:
             errors['last_name'] = 'Last Name must be at least 2 chacters'
-        if not EMAIL_REGEX.match(form['email']):
+        if not EMAIL_REGEX.match(postData['email']):
             errors['email'] = 'Invalid Email Address'
-        email_check = self.filter(email = form['email'])
-        if email_check:
-            errors['email'] = "Email already in Use"
-        if len(form['password'])< 8:
+        if len(postData['password'])< 8:
             errors['password'] = 'Password must be at least 8 characters'
-        # if form['password'] != form['confirm']:
-        #     errors['password'] = 'Passwords do not match'
         return errors
+    
     def authenticate(self, email, password):
         users = self.filter(email=email)
         if not users:
@@ -62,14 +58,13 @@ class UserManager(models.Manager):
         user = users[0]
         return bcrypt.checkpw(password.encode(), user.password.encode())
 
-    def register(self, form):
-        pw = bcrypt.hashpw(form['password'].encode(), bcrypt.gensalt()).decode()
-        return self.create(
-            first_name = form['first_name'],
-            last_name = form['last_name'],
-            email = form['email'],
-            password = pw,
-        )
+    def basic_login(self, postData):
+        errors = {}
+        if not EMAIL_REGEX.match(postData['email']): 
+            errors['email'] = ("Invalid Data!")
+        if len(postData['password']) < 1:
+            errors[ '_password'] = ("Invalid entry")
+        return errors  
 
 class User(models.Model):
     first_name= models.CharField(max_length=50)
