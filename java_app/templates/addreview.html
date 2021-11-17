@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javaReview Create</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="dashboard"><a href="/dashboard">Dashboard</a></div>
+        
+    <div class="javareview">
+        <h1>Add a New Recipe</h1>
+        {% if messages %}
+    <ul class="messages">    
+        {% for message in messages %}    
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    {% for review in all_reviews %}
+                    {% if review.posted_by.id == logged_user.id %}
+                    <a href="/edit/{{review.id}}">Edit</a>
+                    {% endif %}
+                {% endfor %}
+    
+    <form action="/reviews/create" method="POST">
+        {% csrf_token %}
+            <label for="ambience">Ambience</label>
+            <select id="ambience" name="ambience"></p>
+                <option value="ambience">1</option>
+                <option value="ambience">2</option>
+                <option value="ambience">3</option>
+            </select>
+            <p>
+            <label for="cleanliness">Cleanliness</label>
+            <select id="cleanliness" name="cleanliness"></p>
+                <option value="cleanliness">1</option>
+                <option value="cleanliness">2</option>
+                <option value="cleanliness">3</option>
+            </select>
+        </p>
+
+            <label for="coffee">Coffee</label>
+            <select id="coffee" name="coffee"></p>
+                <p>
+                <option value="coffee">1</option>
+                <option value="coffee">2</option>
+                <option value="coffee">3</option>
+            </select>
+        </p>
+
+            <label for="music">Music</label>
+            <select id="music" name="music"></p>
+                <p>
+                <option value="music">1</option>
+                <option value="music">2</option>
+                <option value="music">3</option>
+            </select>
+        </p>
+            <label for="location">Location</label>
+            <select id="location" name="location"></p>
+                <p>
+                <option value="location">1</option>
+                <option value="location">2</option>
+                <option value="location">3</option>
+                </p>
+            </select>
+            <h3>Additional Comments</h3>
+            <textarea name="additional_comments"></textarea>
+            <p><input type="submit" value="Submit"></p>
+            </form>
+
+
+</body>
+</html>

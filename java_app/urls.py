@@ -6,5 +6,9 @@ urlpatterns = [
     path('shops/<int:id>', views.oneShop),
     path('register', views.register), 
     path('login', views.login), 
-    path('logout', views.logout)
+    path('logout', views.logout),
+    path('reviews/create', views.createReview),
+    path('edit/<int:recipe_id>', views.editReview),
+    path('update/<int:review_id>', views.updateReview),
+    
 ]

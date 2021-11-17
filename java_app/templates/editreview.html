@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit javaReview</title>
+</head>
+<body>
+    <h1>Edit Your Review</h1>
+    <a href="/dashboard">Dashboard</a>
+        {% for review in all_reviews %}
+                    {% if review.posted_by.id == logged_user.id %}
+                    <a href="/edit/{{review.id}}">Edit</a>
+                    {% endif %}
+                {% endfor %}
+            <tbody>
+
+                <div class="wrapper">
+                    <div class="container">
+                        <form action='/update/{{this_review.id}}' method="POST">
+                        {%csrf_token%}
+                        <label for="ambience">Ambience</label>
+                        <select id="ambience" name="ambience"></p>
+                            <option value="ambience">1</option>
+                            <option value="ambience">2</option>
+                            <option value="ambience">3</option>
+                        </select>
+                        <p>
+                        <label for="cleanliness">Cleanliness</label>
+                        <select id="cleanliness" name="cleanliness"></p>
+                            <option value="cleanliness">1</option>
+                            <option value="cleanliness">2</option>
+                            <option value="cleanliness">3</option>
+                        </select>
+                    </p>
+            
+                        <label for="coffee">Coffee</label>
+                        <select id="coffee" name="coffee"></p>
+                            <p>
+                            <option value="coffee">1</option>
+                            <option value="coffee">2</option>
+                            <option value="coffee">3</option>
+                        </select>
+                    </p>
+            
+                        <label for="music">Music</label>
+                        <select id="music" name="music"></p>
+                            <p>
+                            <option value="music">1</option>
+                            <option value="music">2</option>
+                            <option value="music">3</option>
+                        </select>
+                    </p>
+                        <label for="location">Location</label>
+                        <select id="location" name="location"></p>
+                            <p>
+                            <option value="location">1</option>
+                            <option value="location">2</option>
+                            <option value="location">3</option>
+                            </p>
+                        </select>
+                        <h3>Additional Comments</h3>
+                        <textarea name="additional_comments"></textarea>
+                        <p><input type="submit" value="Submit"></p>
+                        <input type="submit" value="Resubmit">
+                        </form>
+
+                        <form action="{{recipe.id}}/cancel" method="POST" id="remove">
+                            {%csrf_token%}
+                            <input type="submit" value="remove">      
+                        </form> 
+
+</body>
+</html>
+</body>
+</html>
