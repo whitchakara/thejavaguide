@@ -10,5 +10,6 @@ urlpatterns = [
     path('reviews/create', views.createReview),
     path('edit/<int:recipe_id>', views.editReview),
     path('update/<int:review_id>', views.updateReview),
+    path('dashboard', views.dashboard),
     
 ]

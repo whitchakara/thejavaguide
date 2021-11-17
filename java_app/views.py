@@ -123,4 +123,12 @@ def updateReview(request, review_id):
 
         this_review.save()
     return redirect('/dashboard')
-    
+
+def dashboard(request):
+    if "logged_user" not in request.session:
+        return redirect('/')
+    context = {
+        'logged_user': User.objects.get(id=request.session['logged_user']),
+        'all_reviews': Review.objects.all()
+    }
+    return render(request, 'dashboard.html', context)
