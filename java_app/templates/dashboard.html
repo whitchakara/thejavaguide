@@ -44,7 +44,7 @@
         <tbody>
           {% for review in all_reviews %}
           <tr>
-            <td><a href="review/{{review.id}}">{{recipe.title}}</a></td>
+            <td><a href="review/{{review.id}}">{{review.thisuser}}</a></td>
             {% for recipe in thisrecipe.thisuser %}
             <td><a href="user/{{user.id}}">{{recipe.thisuser.username}}</a></td>
             {% endfor %}
