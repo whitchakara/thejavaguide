@@ -8,8 +8,8 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 class JavaManager(models.Manager):
     def shop_validator(self,postData):
         errors = {}
-        if len(postData["name"]) < 3:
-            errors["name"] = "Name must be at least 3 characters"
+        if len(postData["shop_name"]) < 3:
+            errors["shop_name"] = "Name must be at least 3 characters"
         if len(postData['street_address']) <6:
             errors['street_address'] = "Address must be at least 6 characters"
         if len(postData['city']) <3:
