@@ -51,19 +51,19 @@ def register(request):
         # messages.success(request, "You have successfully registered!")
         # return redirect('/sucess')  
         new_user = User.objects.create(first_name = request.POST['first_name'], last_name= request.POST['last_name'], email = request.POST['email'], password = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode(), user_name = request.POST['user_name'], zip_code = request.POST['zip_code'])
-        request.session['user_id'] = new_user.id
+        request.session['logged_user'] = new_user.id
         request.session['greeting'] = new_user.first_name
         return redirect('/dashboard')
 
 def login(request):
-    if request.method =='GET':
-        return redirect('/')
-    if not User.objects.authenticate(request.POST['email'], request.POST['password']):
-        messages.error(request, 'Invalid Email/Password')
-        return redirect('/')
-    user = User.objects.get(email = request.POST['email'])
-    request.session['user_id'] = user.id
-    # messages.success(request, " You have successfully logged in!")
+    user = User.objects.filter(user_name = request.POST['user_name'])
+    print(user)
+    if user:
+        user = user[0]
+        if bcrypt.checkpw(request.POST['password'].encode(), user.password.encode()):
+            request.session['logged_user']= user.id
+            request.session['greeting'] = user.first_name
+            return redirect('/dashboard')
     return redirect('/dashboard')
 
 def logout(request):
