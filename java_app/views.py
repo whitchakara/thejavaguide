@@ -9,7 +9,7 @@ def index(request):
 
 def createShop(request):
     # return render(request,"add-shop.html")
-    errors = JavaShop.objects.java_validator(request.POST)
+    errors = JavaShop.objects.shop_validator(request.POST)
 
     if len(errors) > 0  :
             for key, value in errors.items():
