@@ -9,25 +9,26 @@ def index(request):
 
 def createShop(request):
     # return render(request,"add-shop.html")
+    print("HERE")
+    print(request.POST)
     errors = JavaShop.objects.shop_validator(request.POST)
-
+    
     if len(errors) > 0  :
-            for key, value in errors.items():
-                messages.error(request, value)
+        for key, value in errors.items():
+            messages.error(request, value)
             return redirect('/add')
     else :
-            user = User.objects.get(id = request.session['user_id'])
-            JavaShop.objects.create(
-                name = request.POST['name'], 
-                street_address = request.POST['street_address'], 
-                city = request.POST['city'] ,
-                zip_code = request.POST['zip_code'],
-                hours_of_operation = request.POST['hours_of_operation'],
-                phone_number = request.POST['phone_number'],
-                posted_by = user
+        user = User.objects.get(id = request.session['logged_user'])
+        JavaShop.objects.create(
+            name = request.POST['shop_name'], 
+            street_address = request.POST['street_address'], 
+            city = request.POST['city'] ,
+            zip_code = request.POST['zip_code'],
+            hours_of_operation = request.POST['hours_of_operation'],
+            phone_number = request.POST['phone_number'],
                 )
                 
-            return redirect("/dashboard")
+        return redirect("/dashboard")
 # def oneShop(request,id):
 #     return render(request,"one-shop.html")
 
