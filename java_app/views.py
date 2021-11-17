@@ -69,3 +69,58 @@ def login(request):
 def logout(request):
     request.session.clear()
     return redirect('/')
+
+def createReview(request):
+    if request.method == "GET":
+        return render(request, 'addreview.html')
+    errors = Review.objects.review_validator(request.POST)
+    if request.method == "POST" or request.session['logged_user'] in request.session:
+        if len(errors) != 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect('/reviews/create')
+        this_user = User.objects.filter(id=request.session['logged_user'])[0]
+
+        new_review = Review.objects.create(
+            ambience=request.POST['ambience'],
+            cleanliness=request.POST['cleanliness'],
+            coffee=request.POST['coffee'],
+            music=request.POST['music'],
+            location=request.POST['location'],
+            additional_comments=request.POST['addiional_comments']
+            # posted_by=this_user
+        )
+        new_review.posted_by.add(this_user)
+        return redirect('/dashboard')
+    
+def editReview(request, review_id):
+    if request.method == "GET":
+        context = {
+            'this_review': Review.objects.get(id=review_id)
+        }
+        return render(request, 'editreview.html', context)
+
+
+def updateReview(request, review_id):
+    errors = Review.objects.review_validator(request.POST)
+    if request.method == "POST" or request.session['logged_user'] in request.session:
+        if len(errors) != 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+                print(value)
+            return redirect(f"/edit/{review_id}")
+    if request.method == 'POST':
+        this_user = User.objects.filter(id=request.session['logged_user'])[0]
+
+        this_review = Review.objects.filter(id=review_id)[0]
+        ambience=request.POST['ambience'],
+        cleanliness=request.POST['cleanliness'],
+        coffee=request.POST['coffee'],
+        music=request.POST['music'],
+        location=request.POST['location'],
+        additional_comments=request.POST['addiional_comments'],
+        posted_by=this_user
+
+        this_review.save()
+    return redirect('/dashboard')
+    
