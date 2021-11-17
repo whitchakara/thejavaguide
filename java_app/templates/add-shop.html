@@ -7,7 +7,7 @@
     <title>Add Shop</title>
 </head>
 <body>
-    <form action = "/shops/add" method="post">
+    <form action = "/add" method="post">
         {% csrf_token %}
         <ul class="messages">
             {% for message in messages %}

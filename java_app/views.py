@@ -132,3 +132,6 @@ def dashboard(request):
         'all_reviews': Review.objects.all()
     }
     return render(request, 'dashboard.html', context)
+
+def add (request):
+    return render(request,"add-shop.html")
