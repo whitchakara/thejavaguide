@@ -27,7 +27,11 @@
         <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
         <a href="" class="btn btn-secondary">Profile</a>
         <a href="/reviews/create" class="btn btn-secondary">Create Review</a>
+<<<<<<< HEAD
         <a href="/add" class="btn btn-secondary">Add Shop</a>
+=======
+        <a href="/shops/add" class="btn btn-secondary">Add Shop</a>
+>>>>>>> kaesy
       </div>
     </section>
     
@@ -45,8 +49,8 @@
           {% for review in all_reviews %}
           <tr>
             <td><a href="review/{{review.id}}">{{review.thisuser}}</a></td>
-            {% for recipe in thisrecipe.thisuser %}
-            <td><a href="user/{{user.id}}">{{recipe.thisuser.username}}</a></td>
+            {% for review in thisreview.thisuser %}
+            <td><a href="user/{{user.id}}">{{review.thisuser.username}}</a></td>
             {% endfor %}
           </tr>
           {%endfor%}

@@ -98,15 +98,12 @@ def logout(request):
 def createReview(request):
     if request.method == "GET":
         return render(request, 'addreview.html')
-    errors = Review.objects.review_validator(request.POST)
+    # errors = Review.objects.review_validator(request.POST)
     if request.method == "POST" or request.session['logged_user'] in request.session:
-        if len(errors) != 0:
-            for key, value in errors.items():
-                messages.error(request, value)
-            return redirect('/reviews/create')
-        this_user = User.objects.filter(id=request.session['logged_user'])[0]
+            return redirect('/dashboard')
+    this_user = User.objects.filter(id=request.session['logged_user'])[0]
 
-        new_review = Review.objects.create(
+    new_review = Review.objects.create(
             ambience=request.POST['ambience'],
             cleanliness=request.POST['cleanliness'],
             coffee=request.POST['coffee'],
@@ -115,8 +112,9 @@ def createReview(request):
             additional_comments=request.POST['addiional_comments']
             # posted_by=this_user
         )
-        new_review.posted_by.add(this_user)
-        return redirect('/dashboard')
+    new_review.posted_by.add(this_user)
+    print('new_review')
+    return redirect('/dashboard')
     
 def editReview(request, review_id):
     if request.method == "GET":
