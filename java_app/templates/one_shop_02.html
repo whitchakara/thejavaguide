@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{shop.name}}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "/css/styles.css" %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h3 text-white" href="/">The javaGUIDE</span>
+            <span class="navbar-text h4 text-white">Viewing {{shop.name}}</span>
+            <ul class="nav nav-pills nav-fill justify-content-end">
+                <li class="nav-item"><a href="/dashboard" class="nav-link text-white active">Dashboard</a></li>
+                <li class="nav-item"><a href="/logout" class="nav-link text-white">Log Out</a></li>
+            </ul>
+        </div>
+    </nav>
+<div class="container col-sm-5 bg-light my-4">
+<div class="card mx-auto" style="width: 30rem;">
+<!--<div class="ratio ratio-4x3">
+    <div><iframe width="300" height="225" style="border:0" loading="lazy" allowfullscreen
+    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD2oMtSuoeV7dCP18rD_yCcBRjTmzUgMcA&q=place_id:ChIJr2PjrQUKlVQRjqzh0oNxCWA">
+    </iframe></div> -->
+<div class="card-body">
+        <h2 class="mx-auto card-title">{{shop.name}}</h2>
+        <ul class="list-group list-group-flush">
+        <li class="list-group-item">Street Address: {{shop.street_address}}</li>
+        <li class="list-group-item">City: {{shop.city}}</li>
+        <li class="list-group-item">State: {{shop.state}}</li>
+        <li class="list-group-item">Zip Code: {{shop.zip_code}}</li>
+        <li class="list-group-item">Hours of Operation: {{shop.hours_of_operation}}</li>
+        <li class="list-group-item">Phone Number: {{shop.phone_number}}</li>
+        </ul>
+        <br/>
+        <h4 class="card-text">Reviews for {{shop.name}}</h4>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><p> This is my favorite Starbucks to go to. It's really big and even has an upstairs section. You can study, listen to music. There is also a really cute Barista named Whitney.&nbsp;&nbsp;<a href="#">AverageJo</a></p></li>
+        <li class="list-group-item"> <p>The best music in town and in the best location. It's right across from a bookstore, so its a two for one.&nbsp;&nbsp;<a href="#">BooksnCoffeeLuver</a></p></li>
+        <li class="list-group-item"><p>My coffee was three whole degrees cooler than I requested! I will not be returning!!!&nbsp;&nbsp;<a href="#">Anonymous</a></p></li>
+    </ul>
+    <div class="card-body">
+        <a href="/reviews/create" class="card-link">Create Review</a>
+        <a href="edit/id" class="card-link">Edit Shop</a>
+    </div>
+    </div>
+
+
+
+    
