@@ -11,6 +11,9 @@ urlpatterns = [
     path('edit/<int:review_id>', views.editReview),
     path('update/<int:review_id>', views.updateReview),
     path('dashboard', views.dashboard),
+    path('addreview', views.createReview),
+    path('editprofile', views.profile),
+    
     path('add', views.add),
     
 ]

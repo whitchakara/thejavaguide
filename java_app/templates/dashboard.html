@@ -1,59 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-      crossorigin="anonymous"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheJavaGuide Dashboard</title>
     {% load static %}
+    <link rel="stylesheet" href="{% static "/css/styles.css" %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-  </head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h3 text-white" href="/">The javaGUIDE</span>
+            <span class="navbar-text h4 text-white">Java Guide Dashboard</span>
+            <ul class="nav nav-pills nav-fill justify-content-end">
+                <li class="nav-item"><a href="/dashboard" class="nav-link text-white active">Dashboard</a></li>
+                <li class="nav-item"><a href="/logout" class="nav-link text-white">Log Out</a></li>
+            </ul>
+        </div>
+    </nav>
+<div class="container col-sm-5 bg-light my-4">
 
 
-  <!--
-
-  
-  <body>
-    <h1></h1>
+    {% load static %}
+    
+    <h1>Welcome!</h1>
+    
     <section>
       <div class="top-right">
-        <!--<a href="/logout"><u>Log Out</u></a> -->
-        <!--add page location in href -->
+
         <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
-        <a href="" class="btn btn-secondary">Profile</a>
-        <a href="/reviews/create" class="btn btn-secondary">Create Review</a>
+        <a href="/editprofile" class="btn btn-secondary">Profile</a>
+        <a href="/addreview" class="btn btn-secondary">Create Review</a>
         <a href="/add" class="btn btn-secondary">Add Shop</a>
       </div>
     </section>
-    
+
+    <h2></h2>
     <div id="home">
       <table class="table table-dark">
-        
         <thead>
           <tr>
-            <th>Latest Reviews</th>
-            <th>Recently Added</th>
+            <th>Latest Review</th>
+            <th>Location</th>
           </tr>
         </thead>
-       
         <tbody>
-          {% for review in all_reviews %}
+          {% for review in review_context %}
           <tr>
+<<<<<<< HEAD
+            <td>Starbucks</td>
+            <td>Los Angeles</td>
+=======
             <td><a href="review/{{review.id}}">{{review.thisuser}}</a></td>
             {% for review in thisreview.thisuser %}
             <td><a href="user/{{user.id}}">{{review.thisuser.username}}</a></td>
             {% endfor %}
+>>>>>>> main
           </tr>
-          {%endfor%}
-         </tbody>
-
+          {% endfor %}
+        </tbody>
       </table>
     </div>
+
+    <section>
+      <h2>Recently Added</h2>
+
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th>Coffee Shop</th>
+            <th>City</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for job in user.selected_jobs.all %}
+          <tr>
+            <td>{{job.title}}</td>
+            <td>
+              <a href="/jobs/{{ job.id }}">View |</a>
+              <a href="/jobs/delete/{{job.id}}">Done |</a>
+              <a href="/jobs/give_up/{{job.id}}">Give Up |</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
   </body>
 </html>
-
