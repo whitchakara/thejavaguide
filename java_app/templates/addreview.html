@@ -13,9 +13,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
-
   <body>
-
     <h1>Add a New Review</h1>
     <section>
       <div class="top-right">
@@ -27,7 +25,6 @@
       </div>
     </section>
 
-        
     <div class="javareview">
 
         {% if messages %}
@@ -39,10 +36,10 @@
     {% endif %}
     
     {% for review in all_reviews %}
-                    {% if review.posted_by.id == logged_user.id %}
-                    <a href="/edit/{{review.id}}">Edit</a>
-                    {% endif %}
-                {% endfor %}
+    {% if review.posted_by.id == logged_user.id %}
+    <a href="/edit/{{review.id}}">Edit</a>
+    {% endif %}
+    {% endfor %}
     
     <form action="/reviews/create" method="POST">
         {% csrf_token %}
