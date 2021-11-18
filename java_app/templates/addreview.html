@@ -1,18 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>javaReview Create</title>
-</head>
-<body>
-    <div class="wrapper">
-        <div id="dashboard">
-            <a href="/dashboard">Dashboard</a></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+
+  <body>
+
+    <h1>Add a New Review</h1>
+    <section>
+      <div class="top-right">
+        <a href="/logout"><u>Log Out</u></a>
+        <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
+        <a href="/editprofile" class="btn btn-secondary">Profile</a>
+        <a href="/addreview" class="btn btn-secondary">Create Review</a>
+        <a href="/add" class="btn btn-secondary">Add Shop</a>
+      </div>
+    </section>
+
         
     <div class="javareview">
-        <h1>Add a New Review</h1>
+
         {% if messages %}
     <ul class="messages">    
         {% for message in messages %}    
