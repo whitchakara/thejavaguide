@@ -39,6 +39,29 @@ def oneShop(request, id):
     }
     return render(request, "one-shop.html", context) 
 
+def edit(request, id):
+    if request.method == "POST":
+        logged_user = User.objects.filter(id=request.session['user_id'])
+        request.session['user_id'] = logged_user[0].id
+        errors = JavaShop.objects.shop_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+                return redirect('/edit/{id}')
+        else:
+            edit_shop = JavaShop.objects.get(id=id)
+            edit_shop.name=request.POST['shop_name']
+            edit_shop.street_address=request.POST['street_address']
+            edit_shop.city=request.POST['city']
+            edit_shop.state=request.POST['state']
+            edit_shop.zip_code=request.POST['zip_code']
+            edit_shop.hours_of_operation=request.POST['hours_of_operation']
+            edit_shop.phone_number=request.POST['phone_number']
+            edit_shop.save()
+            return redirect('/dashboard')
+    else:
+        return redirect('/')
+
 def register(request):
     if request.method == 'GET':
         return redirect('/')
