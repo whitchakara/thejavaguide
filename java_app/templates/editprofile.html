@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+
+  <body>
+    <h1>Hello {{ user.first_name }}! Let's edit your profile!</h1>
+
+    <section>
+      <div class="top-right">
+        <a href="/logout"><u>Log Out</u></a>
+      </div>
+    </section>
+
+    <section>
+      <div class="border">
+        <form action="/jobs/update/{{job.id}}" method="post">
+          {% csrf_token %} {% for message in messages %}
+          <p class="text-danger small">{{ message }}</p>
+          {% endfor %}
+
+          <form action="/register" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="first_name">First Name</label>
+              <input
+                type="text"
+                name="first_name"
+                id="first_name"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last Name</label>
+              <input
+                type="text"
+                name="last_name"
+                id="last_name"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label for="user_name">User Name</label>
+              <input
+                type="text"
+                name="user_name"
+                id="user_name"
+                class="form-control"
+              />
+            </div>
+  
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="zip_code">Zip Code</label>
+              <input
+                type="text"
+                name="zip_code"
+                id="zip_code
+                class="form-control"
+              />
+            </div>
+  
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label for="confirm">Confirm Password</label>
+              <input
+                type="password"
+                name="confirm"
+                id="confirm"
+                class="form-control"
+              />
+            </div>
+
+          </form>
+
+          <!--<button class="btn btn-primary">Cancel</button>-->
+          <a href="/dashboard" class="btn btn-secondary">Cancel</a>
+          <button class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </section>
+    <div id="log-reg">
+
+
+  </body>
+</html>
