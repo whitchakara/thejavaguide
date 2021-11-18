@@ -37,7 +37,30 @@ def oneShop(request, id):
         'shop': JavaShop.objects.get(id = id),
         
     }
-    return render(request, "one-shop.html", context) 
+    return render(request, "one_shop_02.html", context) 
+
+def edit(request, id):
+    if request.method == "POST":
+        logged_user = User.objects.filter(id=request.session['user_id'])
+        request.session['user_id'] = logged_user[0].id
+        errors = JavaShop.objects.shop_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+                return redirect('/edit/{id}')
+        else:
+            edit_shop = JavaShop.objects.get(id=id)
+            edit_shop.name=request.POST['shop_name']
+            edit_shop.street_address=request.POST['street_address']
+            edit_shop.city=request.POST['city']
+            edit_shop.state=request.POST['state']
+            edit_shop.zip_code=request.POST['zip_code']
+            edit_shop.hours_of_operation=request.POST['hours_of_operation']
+            edit_shop.phone_number=request.POST['phone_number']
+            edit_shop.save()
+            return redirect('/dashboard')
+    else:
+        return redirect('/')
 
 def register(request):
     if request.method == 'GET':
@@ -75,15 +98,12 @@ def logout(request):
 def createReview(request):
     if request.method == "GET":
         return render(request, 'addreview.html')
-    errors = Review.objects.review_validator(request.POST)
+    # errors = Review.objects.review_validator(request.POST)
     if request.method == "POST" or request.session['logged_user'] in request.session:
-        if len(errors) != 0:
-            for key, value in errors.items():
-                messages.error(request, value)
-            return redirect('/reviews/create')
-        this_user = User.objects.filter(id=request.session['logged_user'])[0]
+            return redirect('/dashboard')
+    this_user = User.objects.filter(id=request.session['logged_user'])[0]
 
-        new_review = Review.objects.create(
+    new_review = Review.objects.create(
             ambience=request.POST['ambience'],
             cleanliness=request.POST['cleanliness'],
             coffee=request.POST['coffee'],
@@ -92,8 +112,9 @@ def createReview(request):
             additional_comments=request.POST['addiional_comments']
             # posted_by=this_user
         )
-        new_review.posted_by.add(this_user)
-        return redirect('/dashboard')
+    new_review.posted_by.add(this_user)
+    print('new_review')
+    return redirect('/dashboard')
     
 def editReview(request, review_id):
     if request.method == "GET":
@@ -137,6 +158,7 @@ def dashboard(request):
 
 def add (request):
     return render(request,"add-shop.html")
+<<<<<<< HEAD
 
 def profile(request):
     if "logged_user" not in request.session:
@@ -146,3 +168,5 @@ def profile(request):
         'all_reviews': Review.objects.all()
     }
     return render(request, 'editprofile.html', context)
+=======
+>>>>>>> main

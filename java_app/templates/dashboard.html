@@ -54,8 +54,15 @@
         <tbody>
           {% for review in review_context %}
           <tr>
+<<<<<<< HEAD
             <td>Starbucks</td>
             <td>Los Angeles</td>
+=======
+            <td><a href="review/{{review.id}}">{{review.thisuser}}</a></td>
+            {% for review in thisreview.thisuser %}
+            <td><a href="user/{{user.id}}">{{review.thisuser.username}}</a></td>
+            {% endfor %}
+>>>>>>> main
           </tr>
           {% endfor %}
         </tbody>

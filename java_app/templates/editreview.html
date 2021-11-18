@@ -4,16 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit javaReview</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "/css/styles.css" %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>javaReview Create</title>
 </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h3 text-white" href="/">The javaGUIDE</span>
+            <ul class="nav nav-pills nav-fill justify-content-end">
+                <li class="nav-item"><a href="/dashboard" class="nav-link text-white active">Dashboard</a></li>
+                <li class="nav-item"><a href="/reviews/create" class="nav-link text-white active">Create Review</a></li>
+                <li class="nav-item"><a href="/shops/add" class="nav-link text-white active">Add Shop</a></li>
+                <li class="nav-item"><a href="/logout" class="nav-link text-white">Log Out</a></li>
+            </ul>
+        </div>
+    </nav>
 <body>
     <h1>Edit Your Review</h1>
     <a href="/dashboard">Dashboard</a>
-        {% for review in all_reviews %}
-                    {% if review.posted_by.id == logged_user.id %}
-                    <a href="/edit/{{review.id}}">Edit</a>
-                    {% endif %}
-                {% endfor %}
+    {% for review in all_reviews %}
+    {% if review.posted_by.id == logged_user.id %}
+    <a href="/edit/{{review.id}}">Edit</a>
+    {% endif %}
+{% endfor %}
             <tbody>
 
                 <div class="wrapper">
@@ -66,7 +84,7 @@
                         <input type="submit" value="Resubmit">
                         </form>
 
-                        <form action="{{recipe.id}}/cancel" method="POST" id="remove">
+                        <form action="{{review.id}}/cancel" method="POST" id="remove">
                             {%csrf_token%}
                             <input type="submit" value="remove">      
                         </form> 

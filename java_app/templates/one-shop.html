@@ -12,6 +12,12 @@
     <a href="/reviews/create" class="btn btn-secondary">Create Review</a>
     <a href ="/logout">Logout</a>
 
+{% for review in all_reviews %}
+    {% if review.posted_by.id == logged_user.id %}
+    <a href="/edit/{{review.id}}">Edit</a>
+    {% endif %}
+{% endfor %}
+
     <h1>{{shop.name}}</h1>
     <p>Street Address:{{shop.street_address}}</p>
     <p>City:{{shop.city}}</p>
