@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{shop.name}}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "/css/styles.css" %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h3 text-white" href="/">The javaGUIDE</span>
+            <span class="navbar-text h4 text-white">Hello {{ user.first_name }}! Let's edit your profile!</span>
+            <ul class="nav nav-pills nav-fill justify-content-end">
+                <li class="nav-item"><a href="/dashboard" class="nav-link text-white active">Dashboard</a></li>
+                <li class="nav-item"><a href="/logout" class="nav-link text-white">Log Out</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container col-sm-5 bg-light my-4">
+    <h1></h1>
+
+    <section>
+      <div class="top-right">
+        <a href="/editprofile" class="btn btn-secondary">Profile</a>
+        <a href="/addreview" class="btn btn-secondary">Create Review</a>
+        <a href="/add" class="btn btn-secondary">Add Shop</a>
+        <a href="/dashboard" class="btn btn-secondary">Edit Shop</a>
+      </div>
+    </section>
+    <br/>
+    <section>
+      <div class="border">
+        <form action="/jobs/update/{{job.id}}" method="post">
+          {% csrf_token %} {% for message in messages %}
+          <p class="text-danger small">{{ message }}</p>
+          {% endfor %}
+
+          <form action="/register" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="first_name">First Name</label>
+              <input
+                type="text"
+                name="first_name"
+                id="first_name"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label for="last_name">Last Name</label>
+              <input
+                type="text"
+                name="last_name"
+                id="last_name"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label for="user_name">User Name</label>
+              <input
+                type="text"
+                name="user_name"
+                id="user_name"
+                class="form-control"
+              />
+            </div>
+  
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="zip_code">Zip Code</label>
+              <input
+                type="text"
+                name="zip_code"
+                id="zip_code
+                class="form-control"
+              />
+            </div>
+  
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                class="form-control"
+              />
+            </div>
+            <div class="form-group">
+              <label for="confirm">Confirm Password</label>
+              <input
+                type="password"
+                name="confirm"
+                id="confirm"
+                class="form-control"
+              />
+            </div>
+
+          </form>
+          <!--<button class="btn btn-primary">Cancel</button>-->
+          <a href="/dashboard" class="btn btn-secondary">Cancel</a>
+          <button class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </section>
+  
+
+  </body>
+</html>
