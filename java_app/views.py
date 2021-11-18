@@ -9,40 +9,48 @@ def index(request):
 
 def createShop(request):
     # return render(request,"add-shop.html")
+    print("HERE")
+    print(request.POST)
     errors = JavaShop.objects.shop_validator(request.POST)
-
+    
     if len(errors) > 0  :
-            for key, value in errors.items():
-                messages.error(request, value)
+        for key, value in errors.items():
+            messages.error(request, value)
             return redirect('/add')
     else :
-            user = User.objects.get(id = request.session['user_id'])
-            JavaShop.objects.create(
-                name = request.POST['name'], 
-                street_address = request.POST['street_address'], 
-                city = request.POST['city'] ,
-                zip_code = request.POST['zip_code'],
-                hours_of_operation = request.POST['hours_of_operation'],
-                phone_number = request.POST['phone_number'],
-                posted_by = user
+        user = User.objects.get(id = request.session['logged_user'])
+        JavaShop.objects.create(
+            name = request.POST['shop_name'], 
+            street_address = request.POST['street_address'], 
+            city = request.POST['city'] ,
+            zip_code = request.POST['zip_code'],
+            hours_of_operation = request.POST['hours_of_operation'],
+            phone_number = request.POST['phone_number'],
                 )
                 
-            return redirect("/dashboard")
+        return redirect("/dashboard")
 # def oneShop(request,id):
 #     return render(request,"one-shop.html")
+
+def oneShop(request, id):
+    context = {
+        'shop': JavaShop.objects.get(id = id),
+        
+    }
+    return render(request, "one-shop.html", context) 
 
 def edit(request, id):
     if request.method == "POST":
         logged_user = User.objects.filter(id=request.session['user_id'])
         request.session['user_id'] = logged_user[0].id
-        errors = JavaShop.objects.shop_validation(request.POST)
+        errors = JavaShop.objects.shop_validator(request.POST)
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
                 return redirect('/edit/{id}')
         else:
             edit_shop = JavaShop.objects.get(id=id)
-            edit_shop.name=request.POST['name']
+            edit_shop.name=request.POST['shop_name']
             edit_shop.street_address=request.POST['street_address']
             edit_shop.city=request.POST['city']
             edit_shop.state=request.POST['state']
@@ -51,12 +59,8 @@ def edit(request, id):
             edit_shop.phone_number=request.POST['phone_number']
             edit_shop.save()
             return redirect('/dashboard')
-
-def oneShop(request, id):
-    context = {
-        'shop': JavaShop.objects.get(id = id)
-    }
-    return render(request, "one-shop.html", context) 
+    else:
+        return redirect('/')
 
 def register(request):
     if request.method == 'GET':
