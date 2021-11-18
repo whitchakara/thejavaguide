@@ -4,12 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static "/css/styles.css" %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>javaReview Create</title>
 </head>
 <body>
     <div class="wrapper">
-        <div id="dashboard"><a href="/dashboard">Dashboard</a></div>
-        <a href="/edit/{{review.id}}">Edit Review</a>
+        <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
+        <a href="" class="btn btn-secondary">Profile</a>
+        <a href="/reviews/create" class="btn btn-secondary">Create Review</a>
+        <a href="/add" class="btn btn-secondary">Add Shop</a>
         
     <div class="javareview">
         <h1>Add a New Review</h1>
