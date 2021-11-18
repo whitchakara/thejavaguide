@@ -37,7 +37,7 @@ def oneShop(request, id):
         'shop': JavaShop.objects.get(id = id),
         
     }
-    return render(request, "one-shop.html", context) 
+    return render(request, "one_shop_02.html", context) 
 
 def edit(request, id):
     if request.method == "POST":
