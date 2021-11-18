@@ -9,11 +9,11 @@
 <body>
     <h1>Edit Your Review</h1>
     <a href="/dashboard">Dashboard</a>
-        {% for review in all_reviews %}
-                    {% if review.posted_by.id == logged_user.id %}
-                    <a href="/edit/{{review.id}}">Edit</a>
-                    {% endif %}
-                {% endfor %}
+    {% for review in all_reviews %}
+    {% if review.posted_by.id == logged_user.id %}
+    <a href="/edit/{{review.id}}">Edit</a>
+    {% endif %}
+{% endfor %}
             <tbody>
 
                 <div class="wrapper">
@@ -66,7 +66,7 @@
                         <input type="submit" value="Resubmit">
                         </form>
 
-                        <form action="{{recipe.id}}/cancel" method="POST" id="remove">
+                        <form action="{{review.id}}/cancel" method="POST" id="remove">
                             {%csrf_token%}
                             <input type="submit" value="remove">      
                         </form> 
