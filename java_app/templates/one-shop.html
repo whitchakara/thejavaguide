@@ -7,24 +7,12 @@
     <title>View Shop</title>
 </head>
 <body>
+    <a href="/dashboard" class="btn btn-secondary">Dashboard</a> 
+    <a href="" class="btn btn-secondary">Profile</a>
+    <a href="/reviews/create" class="btn btn-secondary">Create Review</a>
+    <a href ="/logout">Logout</a>
+
     <h1>{{shop.name}}</h1>
-    <!-- <ul>
-        <li>
-            Ambience 
-        </li>
-        <li>
-            Cleanlinees 
-        </li>
-        <li>
-            Coffee
-        </li>
-        <li>
-            Music 
-        </li>
-        <li>
-            Location 
-        </li>
-    </ul> -->
     <p>Street Address:{{shop.street_address}}</p>
     <p>City:{{shop.city}}</p>
     <p>State:{{shop.state}}</p>
@@ -34,7 +22,14 @@
 
     <h3>Reviews for {{shop.name}}</h3>
     <p>
+        {%for review in shops%}
+            {{review}}
+        {%endfor%}
+            
 
     </p>
+    <p> This is my favorite Starbucks to go to. It's really big and even has an upstairs section. You can study, listen to music. There is also a really cute Barista named Whitney.<a href="#">AverageJo</a></p>
+    <p>The best music in town and in the best location. It's right across from a bookstore, so its a two for one. <a href="#">BooksnCoffeeLuver</a></p>
+    <p>My coffee was three whole degrees cooler than I requested! I will not be returning!!! <a href="#">Anonymous</a></p>
 </body>
 </html>
