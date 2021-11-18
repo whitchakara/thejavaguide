@@ -34,7 +34,8 @@ def createShop(request):
 
 def oneShop(request, id):
     context = {
-        'shop': JavaShop.objects.get(id = id)
+        'shop': JavaShop.objects.get(id = id),
+        
     }
     return render(request, "one-shop.html", context) 
 
