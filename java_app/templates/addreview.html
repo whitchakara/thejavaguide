@@ -1,60 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Profile</title>
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-      crossorigin="anonymous"
-    />
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-  </head>
-  <body>
-    <h1>Add a New Review</h1>
-    <section>
-      <div class="top-right">
-        <a href="/logout"><u>Log Out</u></a>
-        <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
-        <a href="/editprofile" class="btn btn-secondary">Profile</a>
-        <a href="/addreview" class="btn btn-secondary">Create Review</a>
-        <a href="/add" class="btn btn-secondary">Add Shop</a>
-      </div>
-    </section>
-
-=======
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Review</title>
     {% load static %}
     <link rel="stylesheet" href="{% static "/css/styles.css" %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>javaReview Create</title>
-</head>
+    </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h3 text-white" href="/">The javaGUIDE</span>
+            <span class="navbar-text h4 text-white">Add Java Shop Review</span>
             <ul class="nav nav-pills nav-fill justify-content-end">
-                <li class="nav-item"><a href="/dashboard" class="nav-link text-white active">Dashboard</a></li>
-                <li class="nav-item"><a href="/reviews/create" class="nav-link text-white active">Create Review</a></li>
-                <li class="nav-item"><a href="/shops/add" class="nav-link text-white active">Add Shop</a></li>
                 <li class="nav-item"><a href="/logout" class="nav-link text-white">Log Out</a></li>
+                <li class="nav-item"><a href="/dashboard" class="nav-link text-white active">Dashboard</a></li>
+                <li class="nav-item"><a href="/editprofile" class="nav-link text-white active">Profile</a></li>
+                <li class="nav-item"><a href="/addreview" class="nav-link text-white active">Create Review</a></li>
+                <li class="nav-item"><a href="/add" class="nav-link text-white active">Add Shop</a></li>
             </ul>
         </div>
     </nav>
-    <div class="wrapper">
+<div class="container col-sm-5 bg-light my-4">
+
+
+
+<!--     <li class="nav-item"><a href="/dashboard" class="nav-link text-white active">Dashboard</a></li>
+                <li class="nav-item"><a href="/reviews/create" class="nav-link text-white active">Create Review</a></li>
+                <li class="nav-item"><a href="/shops/add" class="nav-link text-white active">Add Shop</a></li>
+                <li class="nav-item"><a href="/logout" class="nav-link text-white">Log Out</a></li>
+-->
         
         
->>>>>>> main
     <div class="javareview">
 
         {% if messages %}

@@ -158,7 +158,6 @@ def dashboard(request):
 
 def add (request):
     return render(request,"add-shop.html")
-<<<<<<< HEAD
 
 def profile(request):
     if "logged_user" not in request.session:
@@ -168,5 +167,3 @@ def profile(request):
         'all_reviews': Review.objects.all()
     }
     return render(request, 'editprofile.html', context)
-=======
->>>>>>> main

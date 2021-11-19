@@ -20,8 +20,11 @@
             <span class="navbar-brand mb-0 h3 text-white" href="/">The javaGUIDE</span>
             <span class="navbar-text h4 text-white">Java Guide Dashboard</span>
             <ul class="nav nav-pills nav-fill justify-content-end">
-                <li class="nav-item"><a href="/dashboard" class="nav-link text-white active">Dashboard</a></li>
                 <li class="nav-item"><a href="/logout" class="nav-link text-white">Log Out</a></li>
+                <li class="nav-item"><a href="/dashboard" class="nav-link text-white active">Dashboard</a></li>
+                <li class="nav-item"><a href="/editprofile" class="nav-link text-white active">Profile</a></li>
+                <li class="nav-item"><a href="/addreview" class="nav-link text-white active">Create Review</a></li>
+                <li class="nav-item"><a href="/add" class="nav-link text-white active">Add Shop</a></li>
             </ul>
         </div>
     </nav>
@@ -32,15 +35,7 @@
     
     <h1>Welcome!</h1>
     
-    <section>
-      <div class="top-right">
 
-        <a href="/dashboard" class="btn btn-secondary">Dashboard</a>
-        <a href="/editprofile" class="btn btn-secondary">Profile</a>
-        <a href="/addreview" class="btn btn-secondary">Create Review</a>
-        <a href="/add" class="btn btn-secondary">Add Shop</a>
-      </div>
-    </section>
 
     <h2></h2>
     <div id="home">
@@ -54,15 +49,14 @@
         <tbody>
           {% for review in review_context %}
           <tr>
-<<<<<<< HEAD
             <td>Starbucks</td>
+           
             <td>Los Angeles</td>
-=======
             <td><a href="review/{{review.id}}">{{review.thisuser}}</a></td>
             {% for review in thisreview.thisuser %}
             <td><a href="user/{{user.id}}">{{review.thisuser.username}}</a></td>
             {% endfor %}
->>>>>>> main
+
           </tr>
           {% endfor %}
         </tbody>
