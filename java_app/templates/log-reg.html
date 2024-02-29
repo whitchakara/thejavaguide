@@ -15,41 +15,59 @@
     <title>Login Register</title>
 </head>
 <body>
-    <h1>Welcome to The Java Guide!</h1>
-    <h1>Register</h1>
-    <form action = "/register" method="post">
-        {% csrf_token %}
-        <ul class="messages">
+    <h1 class="">Welcome to The Java Guide!</h1>
+    <main class="form-signin w-100 m-auto">
+        <h1 class="h3 mb-3 fw-normal">Register</h1>
+        <form  class="logregform" action = "/register" method="post">
+            {% csrf_token %}
+            <ul class="messages">
             {% for message in messages %}
-            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
             {% endfor %}
-        </ul>
-        <label for= "first_name">First Name</label>
-        <input type="text" name="first_name"/>
-        <label for= "last_name">Last Name</label>
-        <input type="text" name="last_name"/>
-        <label for= "user_name">User Name</label>
-        <input type="text" name="user_name"/>
-        <label for= "email">Email</label>
-        <input type="email" name="email"/>
-        <label for= "zip_code">Zip Code</label>
-        <input type="text" name="zip_code"/>
-        <label for= "password">Password</label>
-        <input type="password" name="password"/>
-        <button>Submit</button>
+            </ul>
+            <div class="mb-3">
+                <label for= "first_name">First Name</label>
+                <input type="text" name="first_name"/>
+            </div>
+            <div class="mb-3">
+                <label for= "last_name">Last Name</label>
+                <input type="text" name="last_name"/>
+            </div>
+            <div class="mb-3">
+                <label for= "user_name">User Name</label>
+                <input type="text" name="user_name"/>
+            </div>
+            <div class="mb-3">
+                <label for= "email">Email</label>
+                <input type="email" name="email"/>
+            </div>
+            <div class="mb-3">
+                <label for= "zip_code">Zip Code</label>
+                <input type="text" name="zip_code"/>
+            </div>
+            <div class="mb-3">
+                <label for= "password">Password</label>
+                <input type="password" name="password"/>
+            </div>
+            <button class="btn btn-primary">Submit</button>
 
-    </form>
+        </form>
     ------
-    <h1>Login</h1>
-    <form action="/login" method="post">
-        {%csrf_token%}
-        <label for= "user_name">User Name</label>
-        <input type="text" name="user_name"/>
-        <label for= "password">Password</label>
-        <input type="password" name="password"/>
-        <button>Submit</button>
+        <h1 class="h3 mb-3 fw-normal">Login</h1>
+        <form action="/login" method="post">
+            {%csrf_token%}
+            <div class="mb-3">
+                <label for= "user_name">User Name</label>
+                <input type="text" name="user_name"/>
+            </div>
+            <div class="mb-3">
+                <label for= "password">Password</label>
+                <input type="password" name="password"/>
+            </div>
+            <button class=" btn btn-primary" >Submit</button>
 
 
-    </form>
+        </form>
+</main>
 </body>
 </html>
