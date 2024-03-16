@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '../static/css/style.css' %}"> 
+    <link rel="preconnect" href=" 'https://fonts.googleapis.com">
+    <link rel="preconnect" href= 'https://fonts.gstatic.com' crossorigin>
+    <link href="static 'https://fonts.googleapis.com/css2?family=Modak&display=swap' rel='stylesheet'"> 
+    <title>Login Register</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <main class="form-signin w-100 m-auto">
+            <h4 class="h3 mb-3 fw-normal text-center">Register</h4>
+            <form  class="mx-auto" action = "/register" method="post">
+                {% csrf_token %}
+                <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+                </ul>
+                <div class="mb-3">
+                    <label for= "first_name" class="form-label">First Name</label>
+                    <input type="text" name="first_name" class="form-control"/>
+                </div>
+                <div class="mb-3">
+                    <label for= "last_name" class="form-label" >Last Name</label>
+                    <input type="text" name="last_name" class="form-control"/>
+                </div>
+                <div class="mb-3">
+                    <label for= "user_name" class="form-label">User Name</label>
+                    <input type="text" name="user_name" class="form-control"/>
+                </div>
+                <div class="mb-3">
+                    <label for= "email" class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" />
+                </div>
+                <div class="mb-3">
+                    <label for= "zip_code" class="form-label">Zip Code</label>
+                    <input type="text" name="zip_code" class="form-control"/>
+                </div>
+                <div class="mb-3">
+                    <label for= "password" class="form-label">Password </label>
+                    <input type="password" name="password" class="form-control"/>
+                </div>
+                <div>
+                <button class="btn btn-primary">Submit</button>
+                </div>
+
+            </form>
+
+    </div>
+    
+</body>
+</html>

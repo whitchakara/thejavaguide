@@ -64,7 +64,7 @@ def edit(request, id):
 
 def register(request):
     if request.method == 'GET':
-        return redirect('/')
+        return redirect('/register')
     errors = User.objects.validate(request.POST)
     if errors:
         for e in errors.values():
