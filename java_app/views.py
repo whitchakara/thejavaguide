@@ -6,6 +6,8 @@ import bcrypt
 # Create your views here.
 def index(request): 
     return render(request, 'log-reg.html')
+def registerPage(request): 
+    return render (request,'register.html')
 
 def createShop(request):
     # return render(request,"add-shop.html")
