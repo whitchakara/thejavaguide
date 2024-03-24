@@ -15,11 +15,12 @@
     <title>Login Register</title>
 </head>
 <body>
-    <h1 class="">Welcome to The Java Guide!</h1>
+    <h1 class="text-center">Welcome to The Java Guide!</h1>
     <div class="container-fluid">
-            <h4 class="h3 mb-3 fw-normal text-center">Login</h4>
-            <form action="/login" method="post">
+            <!-- <h4 class="h3 mb-3 fw-normal text-center">Login</h4> -->
+            <form action="/login" class="mx-auto" method="post">
                 {%csrf_token%}
+                <h4 class="h3 mb-3 fw-normal text-center">Login</h4>
                 <div class="mb-3">
                     <label for= "user_name" class="form-label" >User Name</label>
                     <input type="text" name="user_name" class="form-control"/>
@@ -27,6 +28,9 @@
                 <div class="mb-3">
                     <label for= "password" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control"/>
+                </div>
+                <div>
+                    <a href="/registrationpage"> Create an Account</a>
                 </div>
                 <button class=" btn btn-primary" >Submit</button>
 
